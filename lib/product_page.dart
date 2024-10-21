@@ -1,72 +1,89 @@
 import 'package:flutter/material.dart';
-import 'product_detail_page.dart';
 
 class ProductPage extends StatelessWidget {
-  // List of gaming products
-  final List<Map<String, String>> products = [
-    {
-      'title': 'Mouse Gaming',
-      'image': 'assets/mouse.jpg',
-      'price': 'Rp 500.000',
-      'description': 'Mouse gaming adalah jenis mouse khusus yang dirancang untuk memberikan performa terbaik saat bermain game. Fitur-fitur tambahan seperti tombol yang dapat diprogram, sensor yang lebih akurat, dan desain ergonomis membuat mouse gaming berbeda dari mouse biasa. Dengan DPI hingga mencapai 3200, bisa dipakai dengan segala tipe gaming mulai dari FPS, MOBA, hingga balapan.'
-    },
-    {
-      'title': 'Keyboard Gaming',
-      'image': 'assets/keyboard.jpg',
-      'price': 'Rp 1.000.000',
-      'description': 'Keyboard gaming adalah perangkat input yang dirancang khusus untuk para gamer. Fitur: Switch Mekanik, Backlighting, Tombol Macro, Polling Rate, Rollover. Sangat cocok untuk gaming dengan fitur tambahan yang mendukung performa terbaik.'
-    },
-    {
-      'title': 'Headset Gaming',
-      'image': 'assets/headset.jpg',
-      'price': 'Rp 750.000',
-      'description': 'Headset gaming adalah perangkat audio yang dirancang untuk memberikan pengalaman suara yang imersif. Fitur tambahan seperti surround sound dan noise cancellation sangat penting untuk mendengar efek suara dalam game dengan jelas.'
-    },
-    {
-      'title': 'Kursi Gaming',
-      'image': 'assets/kursi.jpg',
-      'price': 'Rp 2.500.000',
-      'description': 'Kursi gaming dirancang dengan kenyamanan sebagai prioritas utama, dengan fitur sandaran yang dapat disesuaikan, bantalan lumbar, bantalan kepala, dan sandaran tangan yang nyaman.'
-    },
-    {
-      'title': 'Monitor Gaming',
-      'image': 'assets/monitor.jpeg',
-      'price': 'Rp 5.000.000',
-      'description': 'Monitor gaming menawarkan kualitas gambar yang lebih tinggi, refresh rate cepat, dan respon time di bawah 1ms. Fitur tambahan seperti Adaptive Sync dan HDR meningkatkan pengalaman bermain game.'
-    },
-    {
-      'title': 'PC Gaming',
-      'image': 'assets/pc.jpg',
-      'price': 'Rp 15.000.000',
-      'description': 'PC gaming dengan spesifikasi tinggi: Intel Core i7, AMD Ryzen 7, NVIDIA GeForce RTX 30 Series, RAM 32GB DDR5. Ideal untuk gaming dengan performa tinggi dan fleksibilitas yang lebih baik dibandingkan konsol game.'
-    },
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[850], 
       appBar: AppBar(
-        title: const Text('Barang-Barang Gaming'),
+        title: const Text('Produk Gaming', style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.grey[900], 
       ),
-      body: ListView.builder(
-        itemCount: products.length,
-        itemBuilder: (context, index) {
-          final product = products[index];
-          return ListTile(
-            leading: Image.asset(product['image']!, width: 50, height: 50),
-            title: Text(product['title']!),
-            onTap: () {
-              // Navigate to the detail page when an item is clicked
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ProductDetailPage(
-                    title: product['title']!,
-                    price: product['price']!,
-                    description: product['description']!,
-                    image: product['image']!,
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ListView(
+          children: <Widget>[
+            _buildProductCard(
+              context,
+              'Mouse Gaming',
+              'assets/mouse.jpg',
+              'Rp 500.000',
+              'Mouse gaming adalah jenis mouse khusus yang dirancang untuk memberikan performa terbaik saat bermain game...',
+            ),
+            _buildProductCard(
+              context,
+              'Keyboard Gaming',
+              'assets/keyboard.jpg',
+              'Rp 1.000.000',
+              'Keyboard gaming memiliki fitur-fitur tambahan yang membuatnya lebih unggul dibandingkan keyboard biasa...',
+            ),
+            _buildProductCard(
+              context,
+              'Headset Gaming',
+              'assets/headset.jpg',
+              'Rp 750.000',
+              'Headset gaming adalah perangkat audio yang dirancang khusus untuk para gamer dengan kualitas suara terbaik...',
+            ),
+            _buildProductCard(
+              context,
+              'Kursi Gaming',
+              'assets/kursi.jpg',
+              'Rp 2.500.000',
+              'Kursi gaming dirancang untuk kenyamanan maksimal selama bermain game dalam waktu yang lama...',
+            ),
+            _buildProductCard(
+              context,
+              'Monitor Gaming',
+              'assets/monitor.jpeg',
+              'Rp 5.000.000',
+              'Monitor gaming memberikan kualitas gambar terbaik dengan refresh rate tinggi dan resolusi yang tajam...',
+            ),
+            _buildProductCard(
+              context,
+              'PC Gaming',
+              'assets/pc.jpg',
+              'Rp 15.000.000',
+              'PC gaming memberikan performa maksimal dengan komponen-komponen terbaik untuk gaming...',
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildProductCard(BuildContext context, String title, String imagePath, String price, String description) {
+    return Card(
+      color: Colors.grey[800], 
+      child: ListTile(
+        leading: Image.asset(imagePath, width: 50, height: 50),
+        title: Text(title, style: const TextStyle(color: Colors.white)),
+        subtitle: Text(price, style: const TextStyle(color: Colors.blueAccent)),
+        onTap: () {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                backgroundColor: Colors.grey[850], 
+                title: Text(title, style: const TextStyle(color: Colors.white)),
+                content: Text(description, style: const TextStyle(color: Colors.white)),
+                actions: <Widget>[
+                  TextButton(
+                    child: const Text('OK', style: TextStyle(color: Colors.blueAccent)),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
                   ),
-                ),
+                ],
               );
             },
           );
