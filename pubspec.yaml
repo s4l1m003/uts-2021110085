@@ -64,7 +64,13 @@ flutter:
   #   - images/a_dot_ham.jpeg
 
   assets:
-  - assets/images shop.png
+  - assets/gaming store.png
+  - assets/keyboard.jpg
+  - assets/pc.jpg
+  - assets/mouse.jpg
+  - assets/monitor.jpeg
+  - assets/kursi.jpg
+  - assets/headset.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -5,7 +5,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Selamat Datang di Online Shop'),
+        title: const Text('Selamat Datang di gaming Shop'),
       ),
       body: SingleChildScrollView( 
         child: Padding(
@@ -17,7 +17,7 @@ class LoginPage extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.3,
                 child: Image.asset(
-                  'assets/images shop.png',
+                  'assets/gaming store.png',
                   fit: BoxFit.contain, 
                 )
               ),
