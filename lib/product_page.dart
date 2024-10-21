@@ -43,10 +43,10 @@ class ProductPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[850],
+      backgroundColor: Colors.grey[850], 
       appBar: AppBar(
         title: const Text('Barang-Barang Gaming', style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.grey[900], 
+        backgroundColor: Colors.grey[900], // Set AppBar background color
       ),
       body: ListView.builder(
         itemCount: products.length,
@@ -119,6 +119,75 @@ class ProductDetailPage extends StatelessWidget {
             Text(
               description,
               style: const TextStyle(fontSize: 16, color: Colors.white),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PurchasePage(
+                title: title,
+                price: price,
+                image: image,
+              ),
+            ),
+          );
+        },
+        backgroundColor: Colors.green, 
+        child: const Icon(Icons.shopping_cart), 
+      ),
+    );
+  }
+}
+
+class PurchasePage extends StatelessWidget {
+  final String title;
+  final String price;
+  final String image;
+
+  const PurchasePage({
+    required this.title,
+    required this.price,
+    required this.image,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.grey[850], 
+      appBar: AppBar(
+        title: const Text('Pembelian Barang', style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.grey[900],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Center(
+              child: Image.asset(image, width: 200, height: 200),
+            ),
+            const SizedBox(height: 24),
+            Text(
+              'Barang: $title',
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              'Harga: $price',
+              style: const TextStyle(fontSize: 20, color: Colors.blueAccent),
+            ),
+            const SizedBox(height: 32),
+            ElevatedButton(
+              onPressed: () {
+              },
+              child: const Text('Lanjut ke Pembayaran'),
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(double.infinity, 50), backgroundColor: Colors.blue, // Button color
+              ),
             ),
           ],
         ),
